@@ -42,7 +42,7 @@ jobs:
             ${{ env.IMAGE_FRONTEND }}:${{ github.sha }}
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && secrets.SERVER_HOST != '' && secrets.SERVER_USER != '' && secrets.SERVER_SSH_KEY != ''
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
@@ -57,3 +57,4 @@ jobs:
             docker compose pull
             docker compose up -d
             docker image prune -f
+
