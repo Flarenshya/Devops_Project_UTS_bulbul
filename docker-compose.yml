@@ -1,23 +1,41 @@
+version: "3.8"
 services:
   backend:
-    build: ./backend
+    image: yourdockerhub/uts-backend:latest
     container_name: uts-backend
     ports:
-      - "5000:5000"     
+      - "5000:5000"
+    restart: always
+    pull_policy: always
     environment:
-      - PYTHONUNBUFFERED=1
+      - MODEL_FILE=/data/model.pkl
     volumes:
-      - model_data:/app
-    restart: unless-stopped
+      - model_data:/data          
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   frontend:
-    build: ./frontend
+    image: yourdockerhub/uts-frontend:latest
     container_name: uts-frontend
     ports:
       - "8080:80"
     depends_on:
       - backend
-    restart: unless-stopped
+    restart: always
+    pull_policy: always
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=60
+      - WATCHTOWER_LABEL_ENABLE=true
 
 volumes:
   model_data:
