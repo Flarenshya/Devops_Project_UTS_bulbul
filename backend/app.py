@@ -3,13 +3,14 @@ from flask_cors import CORS
 import joblib
 import numpy as np
 import pandas as pd
+import os
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
 
 app = Flask(__name__)
 CORS(app)
 
-MODEL_FILE = "model.pkl"
+MODEL_FILE = os.getenv("MODEL_FILE", "/data/model.pkl")
 
 def train_model():
     df = pd.read_excel("dataset.xlsx")
