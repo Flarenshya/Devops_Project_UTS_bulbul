@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   backend:
-    image: yourdockerhub/uts-backend:latest
+    image: flaren23/uts-backend:latest
     container_name: uts-backend
     ports:
       - "5000:5000"
@@ -15,7 +15,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
   frontend:
-    image: yourdockerhub/uts-frontend:latest
+    image: flaren23/uts-frontend:latest
     container_name: uts-frontend
     ports:
       - "8080:80"
