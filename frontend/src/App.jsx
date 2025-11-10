@@ -54,7 +54,7 @@ function App() {
             {loading ? 'Loading...' : 'Prediksi Harga'}
           </button>
 
-          {result && <p className="text-center text-lg font-semibold mt-4 text-blue-500">{result}</p>}
+          {result && <p className="text-center text-lg font-semibold mt-4">{result}</p>}
         </div>
       </div>
     </div>
