@@ -54,6 +54,6 @@ jobs:
 
       - name: Show pushed image info
         run: |
-          echo "✅ Backend image pushed to: $IMAGE_BACKEND"
-          echo "✅ Frontend image pushed to: $IMAGE_FRONTEND"
+          echo "Backend image pushed to: $IMAGE_BACKEND"
+          echo "Frontend image pushed to: $IMAGE_FRONTEND"
           echo "SHA: $GITHUB_SHA"
