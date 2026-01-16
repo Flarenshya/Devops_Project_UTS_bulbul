@@ -7,12 +7,22 @@ import os
 import logging
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split, RandomizedSearchCV
+from prometheus_flask_exporter import PrometheusMetrics
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
+# Enable CORS
 CORS(app)
+# Initialize Prometheus Metrics
+metrics = PrometheusMetrics(app)
+# Ensure static info is also exported
+metrics.info('app_info', 'Application info', version='1.0.0')
+
+@app.route('/health')
+def health():
+    return jsonify({'status': 'healthy'}), 200
 
 MODEL_FILE = os.getenv("MODEL_FILE", "/data/model.pkl")
 
