@@ -24,7 +24,7 @@ metrics.info('app_info', 'Application info', version='1.0.0')
 def health():
     return jsonify({'status': 'healthy'}), 200
 
-MODEL_FILE = os.getenv("MODEL_FILE", "/data/model.pkl")
+MODEL_FILE = os.getenv("MODEL_FILE", "model.pkl")
 
 def train_model():
     logging.info("Starting model training...")

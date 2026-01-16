@@ -26,7 +26,7 @@ spec:
         - containerPort: 5000
         env:
         - name: MODEL_FILE
-          value: "/data/model.pkl"
+          value: "model.pkl"
         resources:
           requests:
             memory: "128Mi"
